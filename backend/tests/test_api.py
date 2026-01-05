@@ -1,5 +1,5 @@
 from fastapi.testclient import TestClient
-from main import app
+from backend.main import app
 
 client = TestClient(app)
 
@@ -9,7 +9,6 @@ def test_health():
     assert r.json()["status"] == "ok"
 
 def test_calc_and_history():
-    # clear
     r = client.delete("/api/history")
     assert r.status_code == 200
 
