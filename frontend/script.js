@@ -26,8 +26,11 @@ let op = null;         // операция
 let overwrite = true;  // надо ли перезаписать current при следующем вводе
 
 function apiBase() {
-  return (elApiBase.value || "").replace(/\/+$/, "");
+  const v = (elApiBase.value || "").trim();
+  // если пусто — работаем через текущий хост, /api проксирует nginx
+  return (v || "").replace(/\/+$/, "");
 }
+
 
 function setStatus(msg) {
   elStatus.textContent = msg || "";
